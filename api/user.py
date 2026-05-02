@@ -6,7 +6,7 @@
 """
 from core.Response import success, fail
 from validator.user import CreateUser, AccountLogin, UserInfo
-from models.base import User
+from models.tortoise.base import User
 from core.Utils import en_password, check_password
 from core.Auth import create_access_token
 from fastapi import Request

@@ -35,9 +35,9 @@ DB_ORM_CONFIG = {
         #     }
         # },
 
-    },
+    }, 
     "apps": {
-        "base": {"models": ["models.base"], "default_connection": "base"},
+        "base": {"models": ["models.tortoise.base"], "default_connection": "base"},
         # "db2": {"models": ["models.db2"], "default_connection": "db2"},
         # "db3": {"models": ["models.db3"], "default_connection": "db3"}
     },

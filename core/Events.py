@@ -7,9 +7,9 @@
 
 from typing import Callable
 from fastapi import FastAPI
-from database.mysql import register_mysql
 from database.redis import sys_cache
 from aioredis import Redis
+
 
 
 def startup(app: FastAPI) -> Callable:
@@ -22,7 +22,12 @@ def startup(app: FastAPI) -> Callable:
         # APP启动完成后触发
         print("fastapi已启动")
         # 注册数据库
-        await register_mysql(app)
+        if True:
+            import database.sqlalchemy
+        else:
+            from database.tortoise_sqllite import register_mysql
+            await register_mysql(app)
+        #sqlalchemy
         # 注入缓存到app state
         app.state.cache = await sys_cache()
 

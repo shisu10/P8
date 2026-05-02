@@ -13,7 +13,7 @@ from jwt import PyJWTError
 from pydantic import ValidationError
 from starlette import status
 from config import settings
-from models.base import User, Access
+from models.tortoise.base import User, Access
 
 OAuth2 = OAuth2PasswordBearer("")#tokenUrl=""
                              #字符串在docs文档中，显示为token的来源路径

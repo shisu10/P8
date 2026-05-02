@@ -7,7 +7,7 @@
 
 from typing import Callable
 from fastapi import FastAPI
-from database.mysql import register_mysql
+from database.tortoise_sqllite import register_mysql
 from database.redis import sys_cache
 from aioredis import Redis
 

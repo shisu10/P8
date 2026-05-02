@@ -23,7 +23,9 @@ class Role(TimestampMixin):
         fields.ManyToManyField("base.User", related_name="role", on_delete=fields.CASCADE)
     access: fields.ManyToManyRelation["Access"] = \
         fields.ManyToManyField("base.Access", related_name="role", on_delete=fields.CASCADE)
+                                    #默认是False
     role_status = fields.BooleanField(default=False, description="True:启用 False:禁用")
+                                #允许值为null，python层为None
     role_desc = fields.CharField(null=True, max_length=255, description='角色描述')
 
     class Meta:

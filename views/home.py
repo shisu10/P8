@@ -5,19 +5,17 @@
 @Des: views home
 """
 from fastapi import Request, Form, Cookie
-from models.tortoise.base import User
 from typing import Optional
+from DAL.SA import User_DA
 
 
 async def home(request: Request, session_id: Optional[str] = Cookie(None)):
-    # return templates.get_template("index.html").render({"request": request, "id": id})
     cookie = session_id
     session = request.session.get("session")
     page_data = {
         "cookie": cookie,
         "session": session
     }
-    # request.session.setdefault("55555", "hdaldais")
     return request.app.state.views.TemplateResponse("index.html", {"request": request, **page_data})
 
 
@@ -38,18 +36,16 @@ async def result_page(req: Request, username: str = Form(...), password: str = F
     :param req:
     :return: html
     """
-
-    add_user = await User().create(username=username, password=password)
-    print("插入的自增ID", add_user.pk)
+    user_da = User_DA()
+    add_user = await user_da.create(username=username, password=password)
+    print("插入的自增ID", add_user.id)
     print("插入的用户名", add_user.username)
 
-    user_list = await User().all().values()
-    # 打印查询结果
+    user_list = await user_da.get_list()
     for user in user_list:
-        print(f"用户:{user.get('username')}", user)
+        print(f"用户:{user.username}", user)
 
-    # 获取当前创建的用户
-    get_user = await User().get_or_none(username=username)
+    get_user = await user_da.get_by_username(username)
     if not get_user:
         print("")
         return {"info": "没有查询到用户"}

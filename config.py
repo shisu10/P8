@@ -38,11 +38,11 @@ class Config(BaseSettings):
     JWT_ALGORITHM = "HS256"
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES = 24 * 60
     # 数据库
-    DATABASE_CHOICES = {"normal1" : "mysql+pymysql://root:123456@localhost:3306/test_db",
-                        "fake1" : "mysql+pymysql://root:123456@localhost:3306/test_db"
-
-    }
-    DATABASE_URL: str = "mysql+pymysql://root:123456@localhost:3306/test_db"
+    DATABASE_CHOICES = {"SA_1" : "mysql+pymysql://root:123456@localhost:3306/test_db",
+                        "SA_FAKE_1" : "mysql+pymysql://root:123456@localhost:3306/test_db"
+                        }
+    DATABASE_ORM:str = 'SA'
+    DATABASE_URL: str = DATABASE_CHOICES.get("SA_1")
     DATABASE_ECHO: bool = True  # 是否打印 SQL
 
 settings = Config()

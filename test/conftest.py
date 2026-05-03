@@ -6,10 +6,10 @@ from fastapi.testclient import TestClient
 from tortoise import Tortoise
 
 # 1. 阻止 app 启动时连真实数据库
-from database import tortoise_sqllite
+from database import TO
 async def fake_register(app):
     pass
-tortoise_sqllite.register_mysql = fake_register
+TO.register_mysql = fake_register
 
 # 2. 现在导入 app（startup 会调用 fake_register，什么都不做）
 from app import application

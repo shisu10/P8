@@ -9,7 +9,7 @@ from typing import Callable
 from fastapi import FastAPI
 from database.redis import sys_cache
 from aioredis import Redis
-
+from config import Config
 
 
 def startup(app: FastAPI) -> Callable:
@@ -22,10 +22,10 @@ def startup(app: FastAPI) -> Callable:
         # APP启动完成后触发
         print("fastapi已启动")
         # 注册数据库
-        if True:
-            import database.sqlalchemy
+        if Config.DATABASE_ORM == "SA":
+            import database.SA
         else:
-            from database.tortoise_sqllite import register_mysql
+            from database.TO import register_mysql
             await register_mysql(app)
         #sqlalchemy
         # 注入缓存到app state

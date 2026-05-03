@@ -1,12 +1,13 @@
-import pymysql
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
+from config import settings
 
-engine = create_engine(
-    "mysql+pymysql://root:123456@localhost:3306/test_db",
-    echo=True,  #打印SQL日志
-    )
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+engine = create_async_engine(settings.DATABASE_URL, echo=settings.DATABASE_ECHO)
+AsyncSessionLocal = async_sessionmaker(engine, expire_on_commit=False)
+
+from models.SA.Base import Base
+async def init_db():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
 
 
 

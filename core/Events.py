@@ -23,7 +23,8 @@ def startup(app: FastAPI) -> Callable:
         print("fastapi已启动")
         # 注册数据库
         if Config.DATABASE_ORM == "SA":
-            import database.SA
+            from database.SA import init_db
+            await init_db()
         else:
             from database.TO import register_mysql
             await register_mysql(app)

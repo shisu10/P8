@@ -6,7 +6,7 @@
 """
 from fastapi import APIRouter, Security
 from core.Auth import check_permissions
-from api.user import user_info, user_add, user_del, account_login
+from service.user import user_info, user_add, user_del, account_login
 
 ApiRouter = APIRouter(prefix="/v1", tags=["api路由"])
 

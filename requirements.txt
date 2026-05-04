@@ -1,0 +1,25 @@
+# 核心框架
+fastapi[all]==0.75.2
+uvicorn[standard]==0.17.6
+
+# 异步数据库
+sqlalchemy==2.0.25
+aiomysql==0.2.0
+alembic==1.13.0
+
+# 缓存
+aioredis==2.0.1
+
+# 认证
+PyJWT==2.3.0
+passlib==1.7.4
+
+# 配置管理
+python-dotenv==0.19.1
+
+# 第三方 SDK（根据实际使用保留）
+cos-python-sdk-v5==1.9.15
+tencentcloud-sdk-python==3.0.618
+wechatpy==2.0.0a11
+qrcode[pil]==7.3.1
+python-alipay-sdk==3.0.4

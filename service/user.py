@@ -5,12 +5,12 @@
 @Des: 用户管理
 """
 from core.Response import success, fail
-from validator.user import CreateUser, AccountLogin, UserInfo
+from schemas.user import CreateUser, AccountLogin, UserInfo
 from core.Utils import en_password, check_password
 from core.Auth import create_access_token
 from fastapi import Request
 from fastapi.responses import JSONResponse
-from DAL.SA import User_DA   # 只导入 User_DA
+from DAL.Base import User_DA   # 只导入 User_DA
 
 
 async def user_info(req: Request):

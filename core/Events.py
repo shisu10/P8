@@ -9,7 +9,7 @@ from typing import Callable
 from fastapi import FastAPI
 from database.redis import sys_cache
 from aioredis import Redis
-from config import Config
+from config import settings
 
 
 def startup(app: FastAPI) -> Callable:
@@ -22,7 +22,7 @@ def startup(app: FastAPI) -> Callable:
         # APP启动完成后触发
         print("fastapi已启动")
         # 注册数据库
-        if Config.DATABASE_ORM == "SA":
+        if settings.DATABASE_ORM == "SA":
             from database.SA import init_db
             await init_db()
         else:

@@ -43,6 +43,7 @@ from pydantic import ValidationError
 #     }, status_code=500)
 
 
+
 async def http_error_handler(_: Request, exc: HTTPException):
     """
     http异常处理
@@ -101,3 +102,22 @@ async def http422_error_handler(_: Request, exc: Union[RequestValidationError, V
         },
         status_code=422,
     )
+
+
+# class JWTError(Exception):
+#     """JWT 统一异常"""
+#     def __init__(self, message: str = "认证失败", code: int = 401, data: dict = None):
+#         self.code = code
+#         self.message = message
+#         self.data = data or {}
+#         super().__init__(message)
+
+# async def jwt_error_handler(_: Request, exc: JWTError):
+#     return JSONResponse(
+#         status_code=exc.code,
+#         content={
+#             "code": exc.code,
+#             "message": exc.message,
+#             "data": exc.data
+#         }
+#     )

@@ -13,11 +13,10 @@ from config import settings
 from fastapi.staticfiles import StaticFiles
 from core.Router import AllRouter
 from core.Events import startup, stopping
-from core.Exception import http_error_handler, http422_error_handler, unicorn_exception_handler, UnicornException#, \ 
-#mysql_operational_error, mysql_does_not_exist
+from core.Exception import http_error_handler, http422_error_handler, unicorn_exception_handler, UnicornException
 from core.Middleware import Middleware
 from fastapi.templating import Jinja2Templates
-from tortoise.exceptions import OperationalError, DoesNotExist
+# from tortoise.exceptions import OperationalError, DoesNotExist
 
 application = FastAPI(
     debug=settings.APP_DEBUG,

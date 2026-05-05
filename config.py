@@ -8,7 +8,7 @@
 import os.path
 
 from dotenv import load_dotenv, find_dotenv
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 from typing import List
 
 
@@ -30,15 +30,15 @@ class Config(BaseSettings):
     CORS_ALLOW_METHODS: List[str] = ['*']
     CORS_ALLOW_HEADERS: List[str] = ['*']
     # Session
-    SECRET_KEY = "session"
-    SESSION_COOKIE = "session_id"
-    SESSION_MAX_AGE = 14 * 24 * 60 * 60
+    SECRET_KEY:str = "session"
+    SESSION_COOKIE:str = "session_id"
+    SESSION_MAX_AGE:int = 14 * 24 * 60 * 60
     # Jwt
-    JWT_SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
-    JWT_ALGORITHM = "HS256"
-    JWT_ACCESS_TOKEN_EXPIRE_MINUTES = 24 * 60
+    JWT_SECRET_KEY:str = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
+    JWT_ALGORITHM:str = "HS256"
+    JWT_ACCESS_TOKEN_EXPIRE_MINUTES:int = 24 * 60
     # 数据库
-    DATABASE_CHOICES = {"SA_1" : ["SA","mysql+aiomysql://root:123456@localhost:1000/test_db"],
+    DATABASE_CHOICES:dict = {"SA_1" : ["SA","mysql+aiomysql://root:123456@localhost:1000/test_db"],
                         "SA_FAKE_1" : ["SA","mysql+aiomysql://root:123456@localhost:5000/test_db"]
                         }
     DATABASE_CHOSEN:str = "SA_1"

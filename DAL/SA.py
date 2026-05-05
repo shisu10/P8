@@ -1,9 +1,10 @@
-from database.SA import AsyncSessionLocal
+from database.SA import get_sessionmaker
 from sqlalchemy.orm import selectinload
 from sqlalchemy import select, update, delete
 from sqlalchemy.exc import IntegrityError
 from models.SA.Base import User, Role, Access
 
+AsyncSessionLocal = get_sessionmaker()
 
 class User_DA:
     async def get_by_id(self, user_id: int):

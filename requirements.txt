@@ -12,7 +12,7 @@ aioredis==2.0.1
 
 # 认证
 PyJWT==2.3.0
-passlib==1.7.4
+passlib[bcrypt]==1.7.4
 
 # 配置管理
 python-dotenv==0.19.1

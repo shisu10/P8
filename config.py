@@ -38,8 +38,8 @@ class Config(BaseSettings):
     JWT_ALGORITHM:str = "HS256"
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES:int = 24 * 60
     # 数据库
-    DATABASE_CHOICES:dict = {"SA_1" : ["SA","mysql+aiomysql://root:123456@localhost:1000/test_db"],
-                        "SA_FAKE_1" : ["SA","mysql+aiomysql://root:123456@localhost:5000/test_db"]
+    DATABASE_CHOICES:dict = {"SA_1" : ["SA","mysql+pymysql://root:123456@localhost:1000/test_db"],
+                        "SA_FAKE_1" : ["SA","mysql+pymysql://root:123456@localhost:5000/test_db"]
                         }
     DATABASE_CHOSEN:str = "SA_1"
     DATABASE_ORM:str = DATABASE_CHOICES.get(DATABASE_CHOSEN)[0]

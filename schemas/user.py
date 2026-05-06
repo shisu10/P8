@@ -21,7 +21,7 @@ class AccountLogin(BaseModel):
 class UserInfo(BaseModel):
     id: int
     username: str
-    age: Optional[int]
+    age: Optional[int] = None
     user_type: bool
     nickname: Optional[str]
     user_phone: Optional[str]

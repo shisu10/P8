@@ -31,7 +31,7 @@ def create_access_token(data: dict):
     return jwt_token
 
 
-async def check_permissions(req: Request, security_scopes: SecurityScopes, token=Depends(OAuth2)):
+def check_permissions(req: Request, security_scopes: SecurityScopes, token=Depends(OAuth2)):
     """
     权限验证
     :param token:
@@ -95,7 +95,7 @@ async def check_permissions(req: Request, security_scopes: SecurityScopes, token
         )
 
     user_da = User_DA()
-    check_user = await user_da.get_by_id(user_id)
+    check_user = user_da.get_by_id(user_id)
     if not check_user or check_user.user_status != 1:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -108,14 +108,14 @@ async def check_permissions(req: Request, security_scopes: SecurityScopes, token
         scopes = []
         if not user_type and security_scopes.scopes:
             access_da = Access_DA()
-            has_permission = await access_da.user_has_any_scope(user_id, set(security_scopes.scopes))
+            has_permission = access_da.user_has_any_scope(user_id, set(security_scopes.scopes))
             if not has_permission:
                 raise HTTPException(
                     status_code=status.HTTP_403_FORBIDDEN,
                     detail="Not permissions",
                     headers={"scopes": security_scopes.scope_str},
                 )
-            scopes = await access_da.get_user_scopes(user_id)
+            scopes = access_da.get_user_scopes(user_id)
         req.state.scopes = scopes
 
     req.state.user_id = user_id

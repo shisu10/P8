@@ -27,6 +27,6 @@ ApiRouter.delete("/admin/user/del",
 ApiRouter.post("/admin/user/add",
                tags=["用户管理"],
                summary="用户添加",                     #此操作涉及的权限的域
-            dependencies=[Security(check_permissions, scopes=["user_add", "user_list"])]
+            # dependencies=[Security(check_permissions, scopes=["user_add", "user_list"])]
             #对于jwt的拦截
                )(user_add)

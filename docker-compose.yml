@@ -1,0 +1,24 @@
+services:   #容器配置名
+  web:      #容器名web,mysql
+    build: 
+      context: .     #当前路径找Dockerfile
+    ports:
+      - "8000:8000"  
+    environment:
+      DATABASE_URL: mysql+pymysql://root:123456@mysql:1000/test_db
+    depends_on:      #启动前等待启动项
+      - mysql
+
+  mysql:
+    image: mysql:8
+    ports:
+      - "1000:3306"  
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: test_db
+    volumes:         
+      - mysql_data:/var/lib/mysql  #mysql默认数据库路径
+
+volumes:
+  mysql_data:        #mysql_data键，值为空
+  

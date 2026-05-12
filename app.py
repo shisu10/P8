@@ -16,19 +16,23 @@ from core.Events import startup, stopping
 from core.Exception import http_error_handler, http422_error_handler, unicorn_exception_handler, UnicornException
 from core.Middleware import Middleware
 from fastapi.templating import Jinja2Templates
+from contextlib import asynccontextmanager
 # from tortoise.exceptions import OperationalError, DoesNotExist
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await startup(app)()
+    yield
+    await stopping(app)()
+
 application = FastAPI(
+    lifespan=lifespan,
     debug=settings.APP_DEBUG,
     description=settings.DESCRIPTION,
     version=settings.VERSION,
     title=settings.PROJECT_NAME
-    )
-
-
-# 事件监听
-application.add_event_handler("startup", startup(application))
-application.add_event_handler("shutdown", stopping(application))
+)
 
 
 # 异常错误处理

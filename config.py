@@ -41,7 +41,7 @@ class Config(BaseSettings):
     DATABASE_CHOICES:dict = {"SA_1" : ["SA","mysql+pymysql://root:123456@localhost:1000/test_db"],
                         "SA_FAKE_1" : ["SA","mysql+pymysql://root:123456@localhost:5000/test_db"]
                         }
-    DATABASE_CHOSEN:str = "SA_1"
+    DATABASE_CHOSEN:str = "SA_FAKE_1"
     DATABASE_ORM:str = DATABASE_CHOICES.get(DATABASE_CHOSEN)[0]
     DATABASE_URL: str = DATABASE_CHOICES.get(DATABASE_CHOSEN)[1]
     DATABASE_ECHO: bool = True  # 是否打印 SQL

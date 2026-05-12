@@ -7,7 +7,7 @@
 
 from typing import Callable
 from fastapi import FastAPI
-from database.redis import sys_cache
+from database.RDS import sys_cache
 from aioredis import Redis
 from config import settings
 
@@ -29,6 +29,7 @@ def startup(app: FastAPI) -> Callable:
         #     from database.TO import register_mysql
         #     await register_mysql(app)
         #sqlalchemy
+        
         # 注入缓存到app state
         app.state.cache = await sys_cache()
 

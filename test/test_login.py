@@ -9,7 +9,7 @@ def test_login_wrong_password(client):
     response = client.post("/v1/user/account/login", json={
         "username": "admin", "password": "00000000"
     })
-    assert "密码验证失败" in response.json()["message"]
+    assert "用户名或密码错误" in response.json()["message"]
 
 
 def test_user_info_no_token(client):

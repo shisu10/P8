@@ -15,7 +15,7 @@ from starlette import status
 from config import settings
 from DAL.SA import User_DA, Access_DA
 
-OAuth2 = OAuth2PasswordBearer("")
+OAuth2 = OAuth2PasswordBearer("")#参数为token_url,仅仅是显示在sawwger ui上作为提示
 
 
 def create_access_token(data: dict):

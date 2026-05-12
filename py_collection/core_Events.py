@@ -7,7 +7,7 @@
 
 from typing import Callable
 from fastapi import FastAPI
-from database.redis import sys_cache
+from database.RDS import sys_cache
 from aioredis import Redis
 from config import settings
 

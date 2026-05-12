@@ -12,13 +12,14 @@ services:   #容器配置名
   mysql:
     image: mysql:8
     ports:
-      - "1000:3306"  
+      - "1000:1000"  
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: test_db
     volumes:         
       - mysql_data:/var/lib/mysql  #mysql默认数据库路径
-
+    command:
+      --port=1000
 volumes:
   mysql_data:        #mysql_data键，值为空
   
